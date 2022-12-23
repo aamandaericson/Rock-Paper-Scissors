@@ -1,21 +1,30 @@
 const computerChoiceDisplay = document.getElementById('computer-choice')
 const userChoiceDisplay = document.getElementById('user-choice')
 const resultDisplay = document.getElementById('result')
-const possibleChoices = document.querySelectorAll('button')
+const possibleChoices = document.getElementsByClassName('button')
 let userChoice;
 let computerChoice;
 let result;
 
+function init() {
+    let buttons = document.getElementsByClassName("button");
+    for (let button of buttons) {
+        button.addEventListener("click", function() {
+            userChoice = this.getAttribute("data-type"); 
+            userChoiceDisplay.innerHTML = userChoice;
+            generateComputerChoice()
+            getResult();
+            });
+        };
+    };
 
-
-
-possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
+/*possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     userChoice = e.target.id
     userChoiceDisplay.innerHTML = userChoice;
     generateComputerChoice()
     getResult()
 
-})) 
+})) */
 
 function generateComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3) + 1;
