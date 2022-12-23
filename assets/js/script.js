@@ -14,15 +14,13 @@ let result;
 document.addEventListener("DOMContentLoaded", init());
 
 function init() {
-    let buttons = document.getElementsByClassName("button");
-    for (let button of buttons) {
-        button.addEventListener("click", function() {
+    for (let possibleChoice of possibleChoices) {
+        possibleChoice.addEventListener("click", function() {
             userChoice = this.getAttribute("data-type"); 
             userChoiceDisplay.innerHTML = userChoice;
             generateComputerChoice()
             getResult();
             });
-            console.log(button)
         };
     };
 
