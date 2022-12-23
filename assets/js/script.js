@@ -1,10 +1,11 @@
 const computerChoiceDisplay = document.getElementById('computer-choice')
 const userChoiceDisplay = document.getElementById('user-choice')
 const resultDisplay = document.getElementById('result')
-const possibleChoices = document.querySelectorAll('button')
+const possibleChoices = document.getElementsByClassName('button')
 let userChoice;
 let computerChoice;
 let result;
+
 
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     userChoice = e.target.id
@@ -71,7 +72,11 @@ function incrementScore() {
     document.getElementById("your-score").innerText = ++oldYourScore;
 
     if (oldYourScore === 3) {
-        alert('You won the game!')
+        winLose = document.getElementById('win-or-lose')
+        winLose.innerText = 'You won!';
+        hiddenDiv = document.getElementById('hidden-div');
+        hiddenDiv.style.backgroundColor = 'green';
+        hiddenDiv.style.height = '40px';
     }
 
     
@@ -82,7 +87,11 @@ function incrementComputerScore() {
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     document.getElementById("computer-score").innerText = ++oldComputerScore;
     if (oldComputerScore === 3) {
-        alert('Computer won the game!')
+        winLose = document.getElementById('win-or-lose')
+        winLose.innerText = 'You Lost!';
+        hiddenDiv = document.getElementById('hidden-div');
+        hiddenDiv.style.backgroundColor = 'red';
+        hiddenDiv.style.height = '40px';
     }
 
 
