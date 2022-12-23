@@ -1,3 +1,5 @@
+//variables 
+
 const computerChoiceDisplay = document.getElementById('computer-choice')
 const userChoiceDisplay = document.getElementById('user-choice')
 const resultDisplay = document.getElementById('result')
@@ -5,6 +7,11 @@ const possibleChoices = document.getElementsByClassName('button')
 let userChoice;
 let computerChoice;
 let result;
+
+//Wait for the DOM to finnish loading before start
+//Get the button elements by class name and and add event listeners to them
+
+document.addEventListener("DOMContentLoaded", init());
 
 function init() {
     let buttons = document.getElementsByClassName("button");
@@ -15,19 +22,13 @@ function init() {
             generateComputerChoice()
             getResult();
             });
+            console.log(button)
         };
     };
 
-/*possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
-    userChoice = e.target.id
-    userChoiceDisplay.innerHTML = userChoice;
-    generateComputerChoice()
-    getResult()
-
-})) */
 
 function generateComputerChoice() {
-    const randomNumber = Math.floor(Math.random() * 3) + 1;
+    const randomNumber = Math.floor(Math.random() * 3) + 1; // + 1 for readability
     if (randomNumber === 1) {
         computerChoice = 'rock'
     }
@@ -89,8 +90,6 @@ function incrementScore() {
         hiddenDiv.style.backgroundColor = 'green';
         hiddenDiv.style.height = '40px';
     }
-
-    
 
 }
 // Detta är taget från Love maths (increment score) och sen har jag skrivit kod för att alerta om att datorn vunnit. Behöver här ha möjlighet att starta om spelet när detta nås.
