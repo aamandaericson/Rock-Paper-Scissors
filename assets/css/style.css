@@ -32,4 +32,5 @@ button {
     color: #643173;
     border-radius: 5px;
     padding: 6px;
+    font-family: inherit;
 }
