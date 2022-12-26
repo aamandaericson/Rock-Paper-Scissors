@@ -5,7 +5,8 @@ const userChoiceDisplay = document.getElementById('user-choice')
 const resultDisplay = document.getElementById('result')
 const possibleChoices = document.getElementsByClassName('button')
 const resetButton = document.getElementById('reset')
-const PlayerImg = document.getElementById('player-image')
+const playerImg = document.getElementById("player-image")
+const computerImg = document.getElementById('computer-image')
 
 // Undefined variablkes for later use
 let userChoice;
@@ -13,6 +14,10 @@ let computerChoice;
 let result;
 let oldComputerScore;
 let oldYourScore;
+let yourNewScore = document.getElementById("your-score")
+let computerNewScore = document.getElementById("computer-score")
+const differentChoices = ['rock', 'paper, scissors']
+
 
 
 
@@ -27,11 +32,21 @@ function init() {
         possibleChoice.addEventListener("click", function() {
             userChoice = this.getAttribute("data-type"); 
             userChoiceDisplay.innerHTML = userChoice;
+            playGame()
             generateComputerChoice()
             getResult();
             });
         };
     };
+
+function playGame () {
+    if (computerChoice ='rock') {
+        computerImg.src = `assets/images/rock.jpg`
+    } else if (computerChoice ='paper') {
+        computerImg.src = `assets/images/paper.jpg`
+    }
+
+}
 
 
 function generateComputerChoice() {
@@ -46,19 +61,19 @@ function generateComputerChoice() {
         computerChoice = 'scissors'
     }
     computerChoiceDisplay.innerHTML = computerChoice;
+
 }
+
+
+
 
 function getResult() {
 
- 
-    
-// Ta bort text här? Ha kvar draw men ta bort resten? 
     if (computerChoice === userChoice) {
         result = 'Draw!'
     } else if (computerChoice === 'rock' && userChoice ==='paper') {
         result = 'Paper beats rock! You get a point!'
         incrementScore()
-        
     } else if (computerChoice === 'rock' && userChoice ==='scissors') {
         result = 'Rock beats scissors! Computer get a point!'
         incrementComputerScore()
@@ -74,6 +89,9 @@ function getResult() {
     } else if (computerChoice === 'scissors' && userChoice ==='paper') {
         result = 'scissors beats paper! Computer get a point!'
         incrementComputerScore()
+    } else {
+        alert(`Choose Rock, Paper or scissors!`);
+        throw `unidentified choice`;
     }
 
     resultDisplay.innerHTML = result  
@@ -81,7 +99,7 @@ function getResult() {
 
 function showImage (){
     if (userChoice === 'rock') {
-        PlayerImg.src = `assets/images/rock.jpg`;
+        playerImg.src = `assets/images/rock.jpg`;
         console.log('hej')
     }
 }
@@ -90,30 +108,37 @@ function showImage (){
 en omstartsknapp hur som helst så att man när som helst kan starta om. Detta gör ju då att jag måste attackera knapparna på annat sätt i början för att kunna ha ännu en knapp vilket ju är vad jag vill eftersom 
 det annars blir en rak kopia av youtube videon. Så kolla igen hur jag når knapparna på annat vis. Kan jag använda en submit istället för att starta om? Kanske inte men jag vill ju hur som helst nå på annat vis. */
 function incrementScore() {
-    oldYourScore = parseInt(document.getElementById("your-score").innerText);
-    document.getElementById("your-score").innerText = ++oldYourScore;
+    if (yourNewScore.innerText < 5) {
+        oldYourScore = parseInt(document.getElementById("your-score").innerText);
+        yourNewScore.innerText = ++oldYourScore;
+    }
 
-    if (oldYourScore === 3) {
+
+    if (oldYourScore === 5) { 
+        resetGame()
         winLose = document.getElementById('win-or-lose')
-        winLose.innerText = 'You won!';
+        winLose.innerText = 'Congratulations! You won! Press the restart game button to go again!';
         hiddenDiv = document.getElementById('hidden-div');
         hiddenDiv.style.backgroundColor = 'green';
-        hiddenDiv.style.height = '40px';
 
     }
 
 }
 // Detta är taget från Love maths (increment score) och sen har jag skrivit kod för att alerta om att datorn vunnit. Behöver här ha möjlighet att starta om spelet när detta nås.
 function incrementComputerScore() {
-    oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
-    document.getElementById("computer-score").innerText = ++oldComputerScore;
+    if (computerNewScore.innerText < 5) {
+        oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
+        computerNewScore.innerText = ++oldComputerScore;
+    }
 
-    if (oldComputerScore === 3) {
+
+    if (oldComputerScore === 5) {
+        resetGame()
         winLose = document.getElementById('win-or-lose')
-        winLose.innerText = 'You Lost!';
+        winLose.innerText = 'You Lost! Press the restart game button to go again!';
         hiddenDiv = document.getElementById('hidden-div');
         hiddenDiv.style.backgroundColor = 'red';
-        hiddenDiv.style.height = '40px';
+
 
     }
 
@@ -123,8 +148,13 @@ function incrementComputerScore() {
 // Reset game
 
 function resetGame() {
-        oldComputerScore = 0
-        oldYourScore = 0
+    resetButton.addEventListener('click', function(){
+    oldComputerScore = 0
+    oldYourScore = 0
+    
+    document.getElementById("computer-score").innerText = 0
+    yourNewScore.innerText = 0
+    })
     };
 
 
