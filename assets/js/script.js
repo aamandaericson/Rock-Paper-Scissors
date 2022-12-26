@@ -5,6 +5,7 @@ const userChoiceDisplay = document.getElementById('user-choice')
 const resultDisplay = document.getElementById('result')
 const possibleChoices = document.getElementsByClassName('button')
 const resetButton = document.getElementById('reset')
+const PlayerImg = document.getElementById('player-image')
 
 // Undefined variablkes for later use
 let userChoice;
@@ -12,8 +13,7 @@ let computerChoice;
 let result;
 let oldComputerScore;
 let oldYourScore;
-let winLose;
-let hiddenDiv;
+
 
 
 
@@ -29,7 +29,6 @@ function init() {
             userChoiceDisplay.innerHTML = userChoice;
             generateComputerChoice()
             getResult();
-            resetGame()
             });
         };
     };
@@ -53,34 +52,39 @@ function getResult() {
 
  
     
-
+// Ta bort text här? Ha kvar draw men ta bort resten? 
     if (computerChoice === userChoice) {
-        result = `It's a draw!`
+        result = 'Draw!'
     } else if (computerChoice === 'rock' && userChoice ==='paper') {
-        result = 'You Win'
+        result = 'Paper beats rock! You get a point!'
         incrementScore()
+        
     } else if (computerChoice === 'rock' && userChoice ==='scissors') {
-        result = 'You Lost'
+        result = 'Rock beats scissors! Computer get a point!'
         incrementComputerScore()
     } else if (computerChoice === 'paper' && userChoice ==='scissors') {
-        result = 'You Win'
+        result = 'Scissors beats paper! You get a point!'
         incrementScore()
     } else if (computerChoice === 'paper' && userChoice ==='rock') {
-        result = 'You Lose'
+        result = 'Paper beats rock! Computer get a point!'
         incrementComputerScore()
     } else if (computerChoice === 'scissors' && userChoice ==='rock') {
-        result = 'You Win'
+        result = 'Rock beats scissors! You get a point!'
         incrementScore()
     } else if (computerChoice === 'scissors' && userChoice ==='paper') {
-        result = 'You Lose'
+        result = 'scissors beats paper! Computer get a point!'
         incrementComputerScore()
     }
 
-    resultDisplay.innerHTML = result
-
-    
-
+    resultDisplay.innerHTML = result  
 } 
+
+function showImage (){
+    if (userChoice === 'rock') {
+        PlayerImg.src = `assets/images/rock.jpg`;
+        console.log('hej')
+    }
+}
 /* Detta är taget från Love maths (increment score) och sen har jag skrivit kod för att alerta om att datorn vunnit. Behöver här ha möjlighet att starta om spelet när detta nås. 
  Kanske typ sätta upp en div istället för alert som meddelar om att man vinner. Kanske färga grön eller röd beroende på vinst eller förlust och sedan kanske en knapp för att starta om. Kanske en bra ide att ha
 en omstartsknapp hur som helst så att man när som helst kan starta om. Detta gör ju då att jag måste attackera knapparna på annat sätt i början för att kunna ha ännu en knapp vilket ju är vad jag vill eftersom 
@@ -89,33 +93,6 @@ function incrementScore() {
     oldYourScore = parseInt(document.getElementById("your-score").innerText);
     document.getElementById("your-score").innerText = ++oldYourScore;
 
-
-
-}
-// Detta är taget från Love maths (increment score) och sen har jag skrivit kod för att alerta om att datorn vunnit. Behöver här ha möjlighet att starta om spelet när detta nås.
-function incrementComputerScore() {
-    oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
-    document.getElementById("computer-score").innerText = ++oldComputerScore;
-
-    
-}
-
-// Reset game
-
-function resetGame() {
-
-    if (oldComputerScore === 3) {
-        winLose = document.getElementById('win-or-lose')
-        winLose.innerText = 'You Lost!';
-        hiddenDiv = document.getElementById('hidden-div');
-        hiddenDiv.style.backgroundColor = 'red';
-        hiddenDiv.style.height = '40px';
-        
-        oldComputerScore = 0
-        oldYourScore = 0
-
-
-    };
     if (oldYourScore === 3) {
         winLose = document.getElementById('win-or-lose')
         winLose.innerText = 'You won!';
@@ -123,10 +100,31 @@ function resetGame() {
         hiddenDiv.style.backgroundColor = 'green';
         hiddenDiv.style.height = '40px';
 
-        oldComputerScore = 0
-        oldYourScore = 0
-
-
     }
 
 }
+// Detta är taget från Love maths (increment score) och sen har jag skrivit kod för att alerta om att datorn vunnit. Behöver här ha möjlighet att starta om spelet när detta nås.
+function incrementComputerScore() {
+    oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
+    document.getElementById("computer-score").innerText = ++oldComputerScore;
+
+    if (oldComputerScore === 3) {
+        winLose = document.getElementById('win-or-lose')
+        winLose.innerText = 'You Lost!';
+        hiddenDiv = document.getElementById('hidden-div');
+        hiddenDiv.style.backgroundColor = 'red';
+        hiddenDiv.style.height = '40px';
+
+    }
+
+    
+}
+
+// Reset game
+
+function resetGame() {
+        oldComputerScore = 0
+        oldYourScore = 0
+    };
+
+

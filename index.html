@@ -17,18 +17,20 @@
         <div class="game-area">
             <h2>What will you choose?</h2>
             <div id="hidden-div"><span id="win-or-lose"></span></div>
-            <div>
-                <p>You Chose: <span id="user-choice"></span></p>
+            <div class="choice-div left-div">
+                <p>You: <span id="user-choice"></span></p>
+                <img id="player-image" src="/assets/images/paper.jpg" alt="Paper">
             </div>
-            <div class="computer-choice">
-                <p>Computer Chose: <span id="computer-choice"></span></p>
+            <div class="choice-div right-div">
+                <p>Computer: <span id="computer-choice"></span></p>
+                <img id="computer-image" src="/assets/images/rock.jpg" alt="Rock">
             </div>
                 
             <button class="button" id="rock" data-type="rock">Rock <i class="fa-regular fa-hand-back-fist"></i></button>
             <button class="button" id="paper" data-type="paper">Paper <i class="fa-regular fa-hand"></i></button>
             <button class="button" id="scissors" data-type="scissors">Scissors <i class="fa-regular fa-hand-scissors"></i></button>
             <div>
-                <p>Result: <span id="result"></span></p>
+                <span id="result"></span>
                 <p>Your score: <span id="your-score">0</span></p>
                 <p>Computer score: <span id="computer-score">0</span></p>
             </div>

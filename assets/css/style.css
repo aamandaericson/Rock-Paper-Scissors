@@ -2,7 +2,7 @@
 
 body {
     font-family:"Roboto", sans-serif;
-    background-color: #333333;
+    background-color: #d5df6e;
     color: white;
 }
 
@@ -15,7 +15,7 @@ h1 {
 /*Game area*/
 
 .game-area {
-    background-color: #643173;
+    background-color: #81c3c9;
     width: 75%;
     margin: 0 auto;
     padding: 10px;
@@ -34,3 +34,32 @@ button {
     padding: 6px;
     font-family: inherit;
 }
+
+button:hover {
+    background-color: #643173;
+    color: white;
+    border: 1px solid white;
+}
+
+
+.choice-div {
+    width: 50%;
+    margin-bottom: 15px;
+}
+
+.right-div {
+    float: right;
+}
+
+.left-div {
+    float: left;
+}
+
+img {
+    width: 80%;
+}
+
+.button {
+    clear: both;
+}
+
