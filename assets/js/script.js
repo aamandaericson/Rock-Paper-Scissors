@@ -121,9 +121,10 @@ function showImage (){
  * Display a formerly hidden div that congratulate you if you win.
  */
 function incrementScore() {
-    if (yourNewScore.innerText < 5) {
+    if (computerNewScore.innerText <= 5 || yourNewScore.innerText <= 5) {
         oldYourScore = parseInt(document.getElementById("your-score").innerText);
         yourNewScore.innerText = ++oldYourScore;
+        resetGame()
     }
 
 
@@ -143,9 +144,10 @@ function incrementScore() {
  */
 
 function incrementComputerScore() {
-    if (computerNewScore.innerText < 5) {
+    if (computerNewScore.innerText <= 5 || yourNewScore.innerText <= 5) {
         oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
         computerNewScore.innerText = ++oldComputerScore;
+        resetGame()
     }
 
 
